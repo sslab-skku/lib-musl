@@ -1,5 +1,5 @@
-LIBMUSL_SETJMP_SRCS-y += $(LIBMUSL)/src/setjmp/setjmp.c
-LIBMUSL_SETJMP_SRCS-y += $(LIBMUSL)/src/setjmp/longjmp.c
+LIBMUSL_SETJMP_SRCS-y += $(LIBMUSL)/src/setjmp/setjmp.c|isr
+LIBMUSL_SETJMP_SRCS-y += $(LIBMUSL)/src/setjmp/longjmp.c|isr
 
 ifeq (arm,$(CONFIG_UK_ARCH))
 LIBMUSL_SETJMP_SRCS-y += $(LIBMUSL)/src/setjmp/arm/longjmp.s|arm

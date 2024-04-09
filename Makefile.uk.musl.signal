@@ -42,7 +42,7 @@ LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/sigignore.c
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/siginterrupt.c
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/sigisemptyset.c
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/sigismember.c
-LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/siglongjmp.c
+LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/siglongjmp.c|isr
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/signal.c
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/sigorset.c
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/sigpause.c
@@ -63,8 +63,8 @@ ifeq (x86_32,$(CONFIG_UK_ARCH))
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/i386/restore.s|i386
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/i386/sigsetjmp.s|i386
 else ifeq (x86_64,$(CONFIG_UK_ARCH))
-LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/x86_64/restore.s|x86_64
-LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/x86_64/sigsetjmp.s|x86_64
+LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/x86_64/restore.s|isr
+LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/x86_64/sigsetjmp.s|isr
 else ifeq (arm,$(CONFIG_UK_ARCH))
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/arm/restore.s|arm
 LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/arm/sigsetjmp.s|arm
@@ -76,4 +76,6 @@ LIBMUSL_SIGNAL_SRCS-y += $(LIBMUSL)/src/signal/restore.c
 endif
 
 
+
 $(eval $(call _libmusl_import_lib,signal,$(LIBMUSL_SIGNAL_HDRS-y),$(LIBMUSL_SIGNAL_SRCS-y)))
+
