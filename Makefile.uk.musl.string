@@ -111,6 +111,7 @@ LIBMUSL_STRING_SRCS-y += $(LIBMUSL)/src/string/memmove.c|isr
 LIBMUSL_STRING_SRCS-y += $(LIBMUSL)/src/string/memset.c|isr
 endif
 
-LIBMUSL_STRING_CFLAGS-$(CONFIG_OBLIVIUM_SCHED_KERNEL_TICKS) += -finstrument-functions
+# memset and the likes are very commonly used
+# LIBMUSL_STRING_CFLAGS-$(CONFIG_OBLIVIUM_SCHED_KERNEL_TICKS) += -finstrument-functions-once
 
 $(eval $(call _libmusl_import_lib,string,$(LIBMUSL_STRING_HDRS-y),$(LIBMUSL_STRING_SRCS-y)))
